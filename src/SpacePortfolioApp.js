@@ -7,6 +7,7 @@ import mypic from './images/MyPictureNoBg.jpeg'
 import jupiter from './images/jupiterCropped.png'
 import rocketCursor from './images/rocketFire32.png'
 import galaxy from './images/galaxy.png'
+import contact from './images/contact.png'
 
 
 // style={{position: 'absolute', bottom: '2rem', background:`url(${rocket})`, backgroundSize: 'cover', width: '75px',height: '75px', transform: 'rotate(135deg)'}}
@@ -163,18 +164,25 @@ const projectsListStyle = {
 };
 
 const projectItemStyle = {
-  backgroundColor: "rgba(255 255 255 / 0.1)",
   marginBottom: "1rem",
   padding: "1rem 1.5rem",
   borderRadius: "10px",
   width: "800px",
-  // boxShadow:
-  //   "0 2px 6px 0 rgba(97, 218, 251, 0.6), 0 4px 10px 0 rgba(97, 218, 251, 0.4)",
   display: "flex",
   gap: "1rem",
-
 };
 
+const contactSectionStyle = {
+  minHeight: "100vh",
+  display: "flex",
+  alignItems: "flex-end",
+  justifyContent: "center",
+  position: "relative",
+  // background: "rgba(0, 0, 0, 0)",
+  borderRadius: "20px",
+  marginTop: "2rem",
+  // marginBottom: "2rem",
+};
 
 
 export default function SpacePortfolioApp() {
@@ -258,19 +266,19 @@ export default function SpacePortfolioApp() {
     {
       title: "Portfolio Website",
       description:
-        "A modern, responsive personal portfolio website built with React.",
+        "A space themed modern personal portfolio website built with React",
       delay: 0.6
     },
     {
-      title: "Chat App",
+      title: "Rumble Crunch",
       description:
-        "Real-time chat application using WebSocket technology.",
+        "Food delivery UI with lazy loading and live API integration with React",
       delay: 1.2
     },
     {
-      title: "Task Manager",
+      title: "GeorZ",
       description:
-        "A productivity app to manage and track daily tasks efficiently.",
+        "An AI chatbot with voice chat and text chat features along with an amazing UI.",
       delay: 1.8
     },
   ];
@@ -373,7 +381,7 @@ export default function SpacePortfolioApp() {
 
       {/* First screen with name */}
       <section style={headingStyle}>
-        <h1 style={{ display: 'inline-block', minWidth: '11ch' }}>{typedName}<span className="cursor">_</span></h1>
+        <h2 style={{ display: 'inline-block', minWidth: '11ch' }}>{typedName}<span className="cursor">_</span></h2>
         <div id="rocket" style={{ opacity: scrollY > window.innerHeight * 0.01 ? '0' : showRocket ? '1' : '0', transition: "opacity 2s ease-in-out" }} onClick={() => aboutMeRef.current?.scrollIntoView({ behavior: "smooth" })}></div>
       </section>
 
@@ -389,9 +397,9 @@ export default function SpacePortfolioApp() {
         <section ref={aboutMeRef} style={sectionStyle}>
           <h1 style={{
             textAlign: "center",
-            fontSize: "2rem",
+            fontSize: "1.7rem",
             color: "#00BFFF",
-            width: "300px",
+            width: "250px",
             border: "2px solid #00BFFF",
             marginBottom: "0",
             borderRadius: "20px",
@@ -439,7 +447,7 @@ export default function SpacePortfolioApp() {
           <h2 style={{
             textAlign: "center",
             marginLeft: "auto",
-            fontSize: "2rem",
+            fontSize: "1.5rem",
             color: "#00BFFF",
             width: "250px",
             border: "2px solid #00BFFF",
@@ -483,10 +491,24 @@ export default function SpacePortfolioApp() {
 
         {/* Projects list with comet background below */}
         <section ref={projectsRef} style={sectionStyle}>
-          <h2 style={{ textAlign: "center", fontSize: "2.5rem", color: "#00BFFF" }}>My Projects</h2>
+          <h2
+            style={{
+              textAlign: "center",
+              marginLeft: "auto",
+              fontSize: "1.5rem",
+              color: "#00BFFF",
+              width: "250px",
+              border: "2px solid #00BFFF",
+              marginBottom: "20px",
+              borderRadius: "20px",
+              padding: "1rem", background: "rgba(0, 0, 0, 0.52)",
+              transform: (scrollY > window.innerHeight * 2.6) ? 'translateX(-850px)' : 'translateX(-4000px)',
+              transition: "transform 0.6s ease-in-out"
+            }}>My Projects</h2>
           <ul style={projectsListStyle}>
             {projects.map((p) => (
               <li key={p.title}
+                className="project-item"
                 style={{
                   ...projectItemStyle,
                   transform: (scrollY > window.innerHeight * 2.8 && scrollY < window.innerHeight * 3.5) ? 'translateX(0px)' : 'translateX(-2000px)',
@@ -496,14 +518,130 @@ export default function SpacePortfolioApp() {
                 <div>
                   <h3>{p.title}</h3>
                   <p>{p.description}</p>
-                  <button><img src='mon'></img></button>
+                  <button className="githubButton">View on GitHub</button>
                 </div>
-                <div style={{ border: "2px solid white", width: "200px", backgroundImage: `url(${moon})`, backgroundSize: 'cover' }}>
+                <div style={{ border: "1px solid white", borderRadius: "10px", width: "200px", backgroundImage: `url(${moon})`, backgroundSize: 'cover' }}>
 
                 </div>
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* Contact section */}
+        <section ref={contactMeRef} style={contactSectionStyle}>
+          <h2
+            style={{
+              textAlign: "center",
+              marginLeft: "auto",
+              fontSize: "1.5rem",
+              color: "#00BFFF",
+              width: "250px",
+              border: "2px solid #00BFFF",
+              marginBottom: "20px",
+              borderRadius: "20px",
+              padding: "1rem",
+              background: "rgba(0, 0, 0, 0.52)",
+              position: "absolute",
+              left: "50%",
+              top: "2rem",
+              transform: "translateX(-150%)",
+              zIndex: 2
+            }}
+          >
+            Contact me
+          </h2>
+          <form style={{
+            position: 'absolute',
+            left: '64.5%',
+            top: '36%',
+            transform: 'translate(-50%, -50%)',
+            background: 'rgba(0,0,0,0.7)',
+            borderRadius: '16px',
+            padding: '2rem 2.5rem',
+            // boxShadow: '0 0 20px #00BFFF',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.2rem',
+            minWidth: '400px',
+            zIndex: 3
+          }}>
+            <input type="text" placeholder="Name" style={{
+              padding: '0.7rem 1rem',
+              borderRadius: '8px',
+              border: '1.5px solid #00BFFF',
+              background: 'rgba(17,17,17,0.7)',
+              color: 'white',
+              fontSize: '1rem',
+              outline: 'none',
+              fontFamily: 'Orbitron',
+            }} />
+            <input type="email" placeholder="Email" style={{
+              padding: '0.7rem 1rem',
+              borderRadius: '8px',
+              border: '1.5px solid #00BFFF',
+              background: 'rgba(17,17,17,0.7)',
+              color: 'white',
+              fontSize: '1rem',
+              outline: 'none',
+              fontFamily: 'Orbitron',
+            }} />
+            <textarea placeholder="Message" rows={4} style={{
+              padding: '0.7rem 1rem',
+              borderRadius: '8px',
+              border: '1.5px solid #00BFFF',
+              background: 'rgba(17,17,17,0.7)',
+              color: 'white',
+              fontSize: '1rem',
+              outline: 'none',
+              fontFamily: 'Orbitron',
+              resize: 'none',
+            }} />
+            <button type="submit" style={{
+              background: '#2c8400',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              padding: '0.8rem 1.5rem',
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              fontFamily: 'Orbitron',
+              cursor: 'pointer',
+              transition: 'background 0.2s',
+            }}>Send</button>
+          </form>
+          <img
+            src={contact}
+            alt="Contact"
+            style={{
+              display: 'block',
+              margin: '0 auto',
+              position: 'absolute',
+              left: '50%',
+              bottom: 0,
+              transform: 'translateX(-50%)',
+              maxHeight: '90vh',
+              maxWidth: '98vw',
+              objectFit: 'contain',
+              zIndex: 1
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            right: '2.5rem',
+            bottom: '2.5rem',
+            color: '#00BFFF',
+            fontFamily: 'Orbitron',
+            fontSize: '1.1rem',
+            background: 'rgba(0,0,0,0.6)',
+            padding: '0.7rem 1.2rem',
+            borderRadius: '10px',
+            zIndex: 4,
+            letterSpacing: '0.5px',
+            // boxShadow: '0 2px 8px 0 rgba(0,191,255,0.12)'
+          }}>
+            Email id - ojha22781@gmai.com
+          </div>
         </section>
       </div>
     </>
