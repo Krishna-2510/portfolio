@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import space from './images/space2.jpg'
 import earth from './images/earthCropped.png'
-import moon from './images/moon.png'
 import './styles.css'
 import mypic from './images/MyPictureNoBg.jpeg'
 import jupiter from './images/jupiterCropped.png'
 import rocketCursor from './images/rocketFire32.png'
 import galaxy from './images/galaxy.png'
 import contact from './images/contact.png'
+import portfolio from './images/portfolio.png'
+import georZ from './images/georZ.png'
 
 
-// style={{position: 'absolute', bottom: '2rem', background:`url(${rocket})`, backgroundSize: 'cover', width: '75px',height: '75px', transform: 'rotate(135deg)'}}
 const starsBackgroundStyle = {
   position: "fixed",
   top: 0,
@@ -95,63 +95,6 @@ const galaxyBackgroundStyle = {
 };
 
 
-
-const cometStyleBase = {
-  position: "fixed",
-  top: "30vh",
-  width: "500px",
-  height: "300px",
-  backgroundImage: `url(${moon})`,
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "contain",
-  pointerEvents: "none",
-  zIndex: -5,
-  opacity: 1,
-  filter: "drop-shadow(0 0 5px #f0e68c)",
-};
-
-const darkSectionStyle = {
-  ...sectionStyle,
-  backgroundColor: "rgba(0, 0, 0, 0.52)",
-  borderRadius: "12px",
-  boxSizing: "borderBox"
-};
-
-const horizontalScrollStyle = {
-  display: "flex",
-  justifyContent: "center",
-  overflowX: "auto",
-  padding: "1rem 0",
-  gap: "2rem",
-  scrollbarWidth: "thin",
-  scrollbarColor: "#00BFFF transparent",
-};
-
-const skillCardStyle = {
-  flex: "0 0 auto",
-  backgroundColor: "rgb(17 17 17 / 47%)",
-  borderRadius: "10px",
-  padding: "1rem",
-  width: "160px",
-  height: "180px",
-  color: "white",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  // boxShadow:
-  //   "0 4px 8px 0 rgba(97, 218, 251, 0.8), 0 6px 20px 0 rgba(97, 218, 251, 0.6)",
-  userSelect: "none",
-  transition: "transform 0.3s",
-  cursor: "default",
-};
-
-const skillLogoStyle = {
-  maxWidth: "80px",
-  maxHeight: "80px",
-  marginBottom: "1rem",
-  // filter: "drop-shadow(0 0 3px #00BFFF)",
-};
-
 const projectsListStyle = {
   listStyleType: "none",
   padding: 0,
@@ -169,6 +112,7 @@ const projectItemStyle = {
   borderRadius: "10px",
   width: "800px",
   display: "flex",
+  alignItems: "center",
   gap: "1rem",
 };
 
@@ -195,43 +139,6 @@ export default function SpacePortfolioApp() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  // Animate comet horizontally when scroll crosses a threshold
-  // useEffect(() => {
-  //   let start = null;
-  //   const cometStartX = -300;
-  //   const cometEndX = window.innerWidth + 300;
-  //   const cometTravelDuration = 50000;
-
-  //   function animateComet(timestamp) {
-  //     if (!start) start = timestamp;
-  //     const elapsed = timestamp - start;
-  //     if (elapsed < cometTravelDuration) {
-  //       const progress = elapsed / cometTravelDuration;
-  //       const currentX = cometStartX + progress * (cometEndX - cometStartX);
-  //       setCometX(currentX);
-  //       animationFrameRef.current = requestAnimationFrame(animateComet);
-  //     } else {
-  //       // Reset comet position after finishing
-  //       setCometX(cometStartX);
-  //       animationFrameRef.current = null;
-  //     }
-  //   }
-
-  //   if (scrollY > window.innerHeight * 0.7) {
-  //     // Start comet animation if not already running
-  //     if (animationFrameRef.current === null) {
-  //       animationFrameRef.current = requestAnimationFrame(animateComet);
-  //     }
-  //   }
-
-  //   return () => {
-  //     if (animationFrameRef.current && cometX >= cometEndX) {
-  //       cancelAnimationFrame(animationFrameRef.current);
-  //       animationFrameRef.current = null;
-  //     }
-  //   };
-  // }, [scrollY]);
 
   // Skill data - sample logos are from public urls or known CDN
   const skills = [
@@ -267,19 +174,22 @@ export default function SpacePortfolioApp() {
       title: "Portfolio Website",
       description:
         "A space themed modern personal portfolio website built with React",
-      delay: 0.6
+      delay: 0.6,
+      image: portfolio
     },
     {
       title: "Rumble Crunch",
       description:
         "Food delivery UI with lazy loading and live API integration with React",
-      delay: 1.2
+      delay: 1.2,
+      image: georZ
     },
     {
       title: "GeorZ",
       description:
         "An AI chatbot with voice chat and text chat features along with an amazing UI.",
-      delay: 1.8
+      delay: 1.8,
+      image: georZ
     },
   ];
 
@@ -520,8 +430,7 @@ export default function SpacePortfolioApp() {
                   <p>{p.description}</p>
                   <button className="githubButton">View on GitHub</button>
                 </div>
-                <div style={{ border: "1px solid white", borderRadius: "10px", width: "200px", backgroundImage: `url(${moon})`, backgroundSize: 'cover' }}>
-
+                <div style={{ border: "1px solid white", borderRadius: "10px", width: "200px", height: "100px", backgroundImage: `url(${p.image})`, backgroundSize: 'cover' }}>
                 </div>
               </li>
             ))}
@@ -529,28 +438,7 @@ export default function SpacePortfolioApp() {
         </section>
 
         {/* Contact section */}
-        <section ref={contactMeRef} style={contactSectionStyle}>
-          <h2
-            style={{
-              textAlign: "center",
-              marginLeft: "auto",
-              fontSize: "1.5rem",
-              color: "#00BFFF",
-              width: "250px",
-              border: "2px solid #00BFFF",
-              marginBottom: "20px",
-              borderRadius: "20px",
-              padding: "1rem",
-              background: "rgba(0, 0, 0, 0.52)",
-              position: "absolute",
-              left: "50%",
-              top: "2rem",
-              transform: "translateX(-150%)",
-              zIndex: 2
-            }}
-          >
-            Contact me
-          </h2>
+        <section ref={contactMeRef} style={sectionStyle}>
           <form style={{
             position: 'absolute',
             left: '64.5%',
@@ -569,7 +457,7 @@ export default function SpacePortfolioApp() {
             <input type="text" placeholder="Name" style={{
               padding: '0.7rem 1rem',
               borderRadius: '8px',
-              border: '1.5px solid #00BFFF',
+              border: 'none',
               background: 'rgba(17,17,17,0.7)',
               color: 'white',
               fontSize: '1rem',
@@ -579,7 +467,7 @@ export default function SpacePortfolioApp() {
             <input type="email" placeholder="Email" style={{
               padding: '0.7rem 1rem',
               borderRadius: '8px',
-              border: '1.5px solid #00BFFF',
+              border: 'none',
               background: 'rgba(17,17,17,0.7)',
               color: 'white',
               fontSize: '1rem',
@@ -589,7 +477,7 @@ export default function SpacePortfolioApp() {
             <textarea placeholder="Message" rows={4} style={{
               padding: '0.7rem 1rem',
               borderRadius: '8px',
-              border: '1.5px solid #00BFFF',
+              border: 'none',
               background: 'rgba(17,17,17,0.7)',
               color: 'white',
               fontSize: '1rem',
@@ -630,19 +518,47 @@ export default function SpacePortfolioApp() {
             position: 'absolute',
             right: '2.5rem',
             bottom: '2.5rem',
-            color: '#00BFFF',
+            // color: '#00BFFF',
             fontFamily: 'Orbitron',
             fontSize: '1.1rem',
-            background: 'rgba(0,0,0,0.6)',
+            background: 'rgba(0,0,0,0.6)', 
             padding: '0.7rem 1.2rem',
             borderRadius: '10px',
             zIndex: 4,
             letterSpacing: '0.5px',
             // boxShadow: '0 2px 8px 0 rgba(0,191,255,0.12)'
           }}>
-            Email id - ojha22781@gmai.com
+            Email id - ojha22781@gmail.com
           </div>
         </section>
+
+        {/* Scroll to Contact Button */}
+        <button
+          style={{
+            position: 'fixed',
+            right: '2.5rem',
+            bottom: '2.5rem',
+            zIndex: 100,
+            background: '#0000006a',
+            color: 'white',
+            border: '2px solid white',
+            borderRadius: '10px',
+            width: '140px',
+            height: '50px',
+            fontSize: '1rem',
+            fontFamily: 'Orbitron, sans-serif',
+            color: '#ffffff',
+            // boxShadow: '0 2px 8px 0 rgba(0,191,255,0.22)',
+            cursor: 'pointer',
+            display: scrollY > window.innerHeight * 2.8 && scrollY < window.innerHeight * 3.5 ? 'block' : 'none',
+            transition: 'opacity 0.3s',
+            opacity: scrollY > window.innerHeight * 2.8 && scrollY < window.innerHeight * 3.5 ? 1 : 0
+          }}
+          aria-label="Scroll to Contact"
+          onClick={() => contactMeRef.current?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Contact me ↓
+        </button>
       </div>
     </>
   );
